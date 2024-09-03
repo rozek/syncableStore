@@ -2,6 +2,9 @@
 
 small wrapper around SyncedStore which enhances change reporting
 
+> **Important:** this is W.I.P. - **do not use it right now**! While it "works on my machine", using it as an imported module in 3rd-party apps currently causes subtle incnsistencies due to bundling...
+
+
 ## Overview ##
 
 From their GitHub repo: "[SyncedStore CRDT](https://github.com/YousefED/SyncedStore) is an easy-to-use library for building live, collaborative applications that sync automatically".
