@@ -1,5 +1,5 @@
 import { syncedStore, getYjsValue, observeDeep, getYjsDoc as getYjsDoc$1 } from '@syncedstore/core';
-export { Box, SyncedArray, SyncedMap, SyncedText, SyncedXml, Y, areSame, boxed, getYjsValue } from '@syncedstore/core';
+export { Box, SyncedArray, SyncedDoc, SyncedMap, SyncedText, SyncedXml, Y, areSame, boxed, getYjsValue } from '@syncedstore/core';
 
 /*******************************************************************************
 *                                                                              *
