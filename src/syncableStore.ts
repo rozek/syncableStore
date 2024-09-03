@@ -5,7 +5,7 @@
 *******************************************************************************/
 
   import {
-    syncedStore, SyncedArray,SyncedMap,SyncedXml,SyncedText, Box,boxed,
+    syncedStore, SyncedDoc,SyncedArray,SyncedMap,SyncedXml,SyncedText, Box,boxed,
     observeDeep, areSame,
     Y, getYjsDoc as _getYjsDoc, getYjsValue
   } from '@syncedstore/core'
@@ -168,7 +168,7 @@
   }
 
   export {
-    SyncedArray,SyncedMap,SyncedXml,SyncedText, Box,boxed,
+    SyncedDoc,SyncedArray,SyncedMap,SyncedXml,SyncedText, Box,boxed,
     areSame,
     Y, getYjsValue
   }
