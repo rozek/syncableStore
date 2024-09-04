@@ -53,9 +53,9 @@ You may choose among three alternatives:
 
 "syncableStore"s own API consists of just three functions:
 
-* **`syncableStore (Callback, reportClosestArrayObject, YDoc)`**<br>
-* **`getYjsDoc (StoreRoot)`**<br>
-* **`transact (StoreRoot, Callback)`**<br>
+* **`syncableStore (Callback, reportClosestArrayObject, YDoc) ➜ StoreRoot`**<br>
+* **`getYjsDoc (StoreRoot) ➜ YDoc`**<br>accepts a "StoreRoot" (as returned by `syncableStore`) and returns the `Y.Doc` used to share that store
+* **`transact (StoreRoot, Callback)`**<br>runs the given (parameter-less) `Callback` within a transaction on the store given by its `StoreRoot` - which means that all changes (synchronously) applied to the store will be reported in the same syncableStore change reporting callback
 
 (t.b.w.)
 
