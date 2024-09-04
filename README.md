@@ -13,6 +13,31 @@ SyncedStore looks nice, but it has one major problem: `observeDeep` does not rep
 
 ## Usage ##
 
+"syncableStore" can be used with or without a "bundler".
+
+### With a Bundler ###
+
+When used with a bundler, you should first
+
+```
+  npm install syncableStore
+```
+
+and then (in your code)
+
+```
+  import { syncableStore, transact, getYjsDoc } from 'syncableStore'
+```
+
+### With a Bundler ###
+
+If you want to go without a bundler and use "syncableStore" directly in your browser, you should include the [syncableStore-bundle](https://github.com/rozek/syncableStore-bundle) rather than the "syncableStore" itself.
+You may choose among three alternatives:
+
+* load "syncableStore" as a separate script,
+* import "syncableStore" into a module script,
+* import "syncableStore" into a normal script.
+
 (t.b.w.)
 
 ## Wrapper ##
