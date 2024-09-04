@@ -1,6 +1,6 @@
 # syncableStore #
 
-small wrapper around SyncedStore which enhances change reporting
+small wrapper around [SyncedStore](https://github.com/YousefED/SyncedStore) which enhances change reporting
 
 
 ## Overview ##
