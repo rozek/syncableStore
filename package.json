@@ -47,10 +47,7 @@
     "tslib": "^2.6.2",
     "typescript": "^4.3.3"
   },
-  "dependencies": {
-    "@syncedstore/core": "^0.6.0"
-  },
   "peerDependencies": {
-    "yjs": "^13.6.18"
+    "@syncedstore/core": "^0.6.0"
   }
 }
