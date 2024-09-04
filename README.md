@@ -11,7 +11,6 @@ SyncedStore looks nice, but it has one major problem: `observeDeep` does not rep
 
 `syncableStore` therefore adds a small wrapper around `SyncedStore` which enhances the original change reporting and informs you about which store entries have been modified during a single transaction.
 
-> **Important:** this is W.I.P. - **do not use it right now**! While it "works on my machine", using it as an imported module in 3rd-party apps currently causes subtle incnsistencies due to bundling...
 
 
 (documentation follows)
