@@ -51,6 +51,12 @@ You may choose among three alternatives:
 
 ## API ##
 
+"syncableStore"s own API consists of just three functions:
+
+* **`syncableStore (Callback, reportClosestArrayObject, YDoc)`**<br>
+* **`getYjsDoc (StoreRoot)`**<br>
+* **`transact (StoreRoot, Callback)`**<br>
+
 (t.b.w.)
 
 ## Typical Use Case ##
