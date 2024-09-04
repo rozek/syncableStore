@@ -42,7 +42,12 @@ You may choose among three alternatives:
 
 ## Wrapper ##
 
-(t.b.w.)
+"syncableStore" is just a thin wrapper around "SyncedStore" and as such it
+
+* simply passes the "SyncedStore" exports `SyncedDoc`, `SyncedArray`, `SyncedMap`, `SyncedXml`, `SyncedText`, `Box`, `boxed`, `areSame`, `getYjsValue` and `Y`,
+* swallows the "SyncedStore" exports `syncedStore` and `observeDeep`,
+* modifies the "SyncedStore" exports `getYjsDoc` and
+* adds its own exports `syncableStore` and `transact`.
 
 ## API ##
 
