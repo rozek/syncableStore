@@ -72,12 +72,26 @@ You may choose among three alternatives:
 The callback given as first argument of the `syncableStore` factory function has the signature
 
 ```
-  (Changes:Map<any,string[]>):void
+  (ChangeReport:Map<any,string[]>):void
 ```
 
 It will be invoked with a map whose keys are the changed objects and values are (sometimes empty) lists of property names.
 
 Unfortunately, the indices of changed arrays cannot be determined - as a consequence, changed arrays will be reported with empty property lists and only actual objects ("maps") with property lists that aren't empty.
+
+#### Inspecting Change Reports ###
+
+A simple callback function could look as follows:
+
+```
+  function ChangeCallback (ChangeReport) {
+    ChangeReport.forEach((PropertyList,StoreEntry) => {
+      console.log('changed store entry',StoreEntry, 'changed Properties',PropertyList)
+    })
+  }
+```
+
+Please keep in mind, that **store entries are usually "proxies"** for the actual values you originally entered into the store.
 
 #### reportClosestArrayObject ####
 
