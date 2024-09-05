@@ -40,15 +40,46 @@ You may choose among three alternatives:
 
 #### Load "syncableStore" into a global Variable ####
 
-(t.b.w.)
+Just add the following script element to you web page
+
+```
+<script src="https://rozek.github.io/syncableStore-bundle/dist/syncableStore-bundle.js"></script>
+```
+
+and deconstruct anything you need from the global variable `SyncableStore` (with capital "S")
+
+```
+  const { syncableStore, getYjsDoc, transact } = SyncableStore
+  ...
+```
 
 #### Import "syncableStore" into a Script of type "module" ####
 
-(t.b.w.)
+If your code is inside a script of type "module" you may simply import the "syncableStore-bundle" module as usual:
+
+```
+<script type="module">
+  import {
+    syncableStore, getYjsDoc, transact 
+  } from "https://rozek.github.io/syncableStore-bundle/dist/syncableStore-bundle.esm.js"
+  ...
+</script>
+```
 
 #### Import "syncableStore" into a conventional Script ####
 
-(t.b.w.)
+If your code is within a normal script element, you will have to import the "syncableStore-bundle" module with an `import` expression - usually with `await` in an asynchronous function or as a `Promise`
+
+```
+<script">
+;(async () => {
+  const {
+    syncableStore, getYjsDoc, transact 
+  } = await import('https://rozek.github.io/syncableStore-bundle/dist/syncableStore-bundle.esm.js')
+  ...
+})()
+</script>
+```
 
 ## Wrapper ##
 
