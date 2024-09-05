@@ -155,16 +155,16 @@ type StoreEntry = {
 }
 ```
 
-Nota bene: the `StoreRoot` of your "syncableStore" will become the `EntryPool` of all your `StoreEntry` objects. The actual "root node" of the tree you are creating will then be an entry from that pool with a well-known (usually fixed) `UUID`.
+Nota bene: the `StoreRoot` of your "syncableStore" will become the `EntryPool` of all your `StoreEntry` objects. The actual "root node" of the tree you are creating will then be an entry in that pool with a well-known (usually fixed) `UUID`.
 
-The basic operations on that store will then be reported as follows (assuming `reportClosestArrayObject = true`):
+The basic operations on that store will then be reported as follows (assuming `reportClosestArrayObject = true` because this use case is what that option is good for):
 
 * create root node<br>`Entry == <store-root>, PropertyList == [<root-uuid>]`
-* create new inner node<br>`Entry == <store-root>, PropertyList == [<node-uuid>]`<br>`Entry == <node-container>, PropertyList == ['ContentIdList']`<br>`Entry == <new-node>, PropertyList == ['Container']`
-* modify node<br>`Entry == <node>, PropertyList == [<name-of-changed-property]`
+* create new inner node<br>`Entry == <store-root>, PropertyList == [<node-uuid>]`<br>`Entry == <node-container>, PropertyList == ['ContentIdList']`<br>`Entry == <new-node>, PropertyList == ['ContainerId']`
+* modify node<br>`Entry == <node>, PropertyList == [<name-of-changed-property>]`
 * move inner node within its container<br>`Entry == <node-container>, PropertyList == ['ContentIdList']`
-* move inner node between containers<br>`Entry == <old-container>, PropertyList == ['ContentIdList']`<br>`Entry == <new-container>, PropertyList == ['ContentIdList']`<br>`Entry == <node>, PropertyList == ['Container']`
-* destroy inner node (and removal from its container)<br>`Entry == <store-root>, PropertyList == [<root-uuid>]`<br>`Entry == <node-container>, PropertyList == ['ContentIdList']`
+* move inner node between containers<br>`Entry == <old-container>, PropertyList == ['ContentIdList']`<br>`Entry == <new-container>, PropertyList == ['ContentIdList']`<br>`Entry == <node>, PropertyList == ['ContainerId']`
+* destroy inner node (and remove it from its container)<br>`Entry == <store-root>, PropertyList == [<root-uuid>]`<br>`Entry == <node-container>, PropertyList == ['ContentIdList']`
 
 ## Build Instructions ##
 
