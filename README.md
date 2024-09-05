@@ -81,11 +81,23 @@ Unfortunately, the indices of changed arrays cannot be determined - as a consequ
 
 #### reportClosestArrayObject ####
 
-Since array change reports don't include the indcies of changed elements and changed arrays may be difficult to find in a large data set anyway, there is an option to report their container object instead (together with the name of the property containing that array) - this leaves it up to the application to perform an array diff, if necessary.
+Since array change reports don't include the indices of changed elements and arrays may be difficult to find in a large data set anyway, there is an option to report their container object instead (together with the name of the property containing that array) - this leaves it up to the application to perform an array diff, if necessary.
 
 For nested arrays, the closest containing "map" and the property containing the outermost arrays will be reported.
 
-(t.b.w.)
+To give an example: let's say, you have a data model similar to
+
+```
+  type Store = {
+    [Id:UUID]:{
+      EntryIdList:UUID[]
+    }
+  }
+```
+
+and you insert (the UUID of) a new entry into the `EntryIdList` of another one.
+
+Without `reportClosestArrayObject` (or if it was set to `false`), the change report will contain the `EntryIdList` and an empty property list. However, with `reportClosestArrayObject` set to `true`, the report will mention the entry containing the `EntryIdList` and `['EntryIdList']` as its list of changed proeprties.
 
 ## Typical Use Case ##
 
