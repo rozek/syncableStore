@@ -11,7 +11,7 @@ From their GitHub repo: "[SyncedStore CRDT](https://github.com/YousefED/SyncedSt
 
 "syncableStore" therefore adds a small wrapper around `SyncedStore` which enhances the original change reporting and informs you about which of your actual store entries have been modified during a single transaction.
 
-## Usage ##
+## Installation or Inclusion ##
 
 "syncableStore" can be used with or without a "bundler".
 
@@ -34,9 +34,19 @@ and then (in your code)
 If you want to go without a bundler and use "syncableStore" directly in your browser, you should include the [syncableStore-bundle](https://github.com/rozek/syncableStore-bundle) rather than the "syncableStore" itself.
 You may choose among three alternatives:
 
-* load "syncableStore" as a separate script,
+* load "syncableStore" as a separate script into a global variable,
 * import "syncableStore" into a module script,
-* import "syncableStore" into a normal script.
+* import "syncableStore" into a conventional script.
+
+#### Load "syncableStore" into a global Variable ####
+
+(t.b.w.)
+
+#### Import "syncableStore" into a Script of type "module" ####
+
+(t.b.w.)
+
+#### Import "syncableStore" into a conventional Script ####
 
 (t.b.w.)
 
