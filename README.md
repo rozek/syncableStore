@@ -69,15 +69,21 @@ You may choose among three alternatives:
 
 ## Change Reporting ##
 
-The callback given as the first argument of the `syncableStore` factory function has the signature
+The callback given as first argument of the `syncableStore` factory function has the signature
 
 ```
-  (ChangeSet:Map<any,string[]>):void
+  (Changes:Map<any,string[]>):void
 ```
 
 It will be invoked with a map whose keys are the changed objects and values are (sometimes empty) lists of property names.
 
-Unfortunately, the indices of changed arrays cannot be determined - as a consequence, changed arrays will be reported with empty property lists and only actual objects ("maps") with property lists that aren#t empty.
+Unfortunately, the indices of changed arrays cannot be determined - as a consequence, changed arrays will be reported with empty property lists and only actual objects ("maps") with property lists that aren't empty.
+
+#### reportClosestArrayObject ####
+
+Since array change reports don't include the indcies of changed elements and changed arrays may be difficult to find in a large data set anyway, there is an option to report their container object instead (together with the name of the property containing that array) - this leaves it up to the application to perform an array diff, if necessary.
+
+For nested arrays, the closest containing "map" and the property containing the outermost arrays will be reported.
 
 (t.b.w.)
 
