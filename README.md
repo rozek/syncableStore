@@ -145,7 +145,7 @@ Without `reportClosestArrayObject` (or if it was set to `false`), the change rep
 
 ## Typical Use Case ##
 
-Quite often, data models from "trees" (i.e., directed acyclic graphs (DAGs) - often with additional references between nodes). If the leaves and branches of such a tree may be freely moved around, the following approach usually leads to an efficiently shareable data set:
+Quite often, data models form "trees" (i.e., directed acyclic graphs (DAGs) - sometimes with additional references between nodes). If the leaves and branches of such a tree may be freely moved around, the following approach usually leads to an efficiently shareable data set:
 
 ```
 type EntryPool = { [Id:UUID]:StoreEntry }
@@ -157,16 +157,14 @@ type StoreEntry = {
 
 Nota bene: the `StoreRoot` of your "syncableStore" will become the `EntryPool` of all your `StoreEntry` objects. The actual "root node" of the tree you are creating will then be an entry from that pool with a well-known (usually fixed) `UUID`.
 
-The basic operations on that store will then be reported as follows:
+The basic operations on that store will then be reported as follows (assuming `reportClosestArrayObject = true`):
 
-* create root node<br>`Entry == StoreRoot, PropertyList == [<uuid>]`
-* create new inner node<br>
-* modify node<br>
-* move inner node within its container<br>
-* move inner node between containers<br>
-* destroy inner node<br>
-
-(t.b.w.)
+* create root node<br>`Entry == <store-root>, PropertyList == [<root-uuid>]`
+* create new inner node<br>`Entry == <store-root>, PropertyList == [<node-uuid>]`<br>`Entry == <node-container>, PropertyList == ['ContentIdList']`<br>`Entry == <new-node>, PropertyList == ['Container']`
+* modify node<br>`Entry == <node>, PropertyList == [<name-of-changed-property]`
+* move inner node within its container<br>`Entry == <node-container>, PropertyList == ['ContentIdList']`
+* move inner node between containers<br>`Entry == <old-container>, PropertyList == ['ContentIdList']`<br>`Entry == <new-container>, PropertyList == ['ContentIdList']`<br>`Entry == <node>, PropertyList == ['Container']`
+* destroy inner node (and removal from its container)<br>`Entry == <store-root>, PropertyList == [<root-uuid>]`<br>`Entry == <node-container>, PropertyList == ['ContentIdList']`
 
 ## Build Instructions ##
 
