@@ -67,6 +67,18 @@ You may choose among three alternatives:
 * **`getYjsDoc (StoreRoot) ➜ YDoc`**<br>accepts a "StoreRoot" (as returned by `syncableStore`) and returns the `Y.Doc` used to share that store
 * **`transact (StoreRoot, Callback)`**<br>runs the given (parameter-less) `Callback` within a transaction on the store given by its `StoreRoot` - which means that all changes (synchronously) applied to the store will be reported in the same syncableStore change reporting callback
 
+## Change Reporting ##
+
+The callback given as the first argument of the `syncableStore` factory function has the signature
+
+```
+  (ChangeSet:Map<any,string[]>):void
+```
+
+It will be invoked with a map whose keys are the changed objects and values are (sometimes empty) lists of property names.
+
+Unfortunately, the indices of changed arrays cannot be determined - as a consequence, changed arrays will be reported with empty property lists and only actual objects ("maps") with property lists that aren#t empty.
+
 (t.b.w.)
 
 ## Typical Use Case ##
