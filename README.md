@@ -2,7 +2,6 @@
 
 small wrapper around [SyncedStore](https://github.com/YousefED/SyncedStore) which enhances change reporting
 
-
 ## Overview ##
 
 From their GitHub repo: "[SyncedStore CRDT](https://github.com/YousefED/SyncedStore) is an easy-to-use library for building live, collaborative applications that sync automatically".
@@ -20,13 +19,13 @@ From their GitHub repo: "[SyncedStore CRDT](https://github.com/YousefED/SyncedSt
 When used with a bundler, you should first
 
 ```
-  npm install syncableStore
+npm install syncableStore
 ```
 
 and then (in your code)
 
 ```
-  import { syncableStore, transact, getYjsDoc } from 'syncableStore'
+import { syncableStore, transact, getYjsDoc } from 'syncableStore'
 ```
 
 ### With a Bundler ###
@@ -49,8 +48,8 @@ Just add the following script element to you web page
 and deconstruct anything you need from the global variable `SyncableStore` (with capital "S")
 
 ```
-  const { syncableStore, getYjsDoc, transact } = SyncableStore
-  ...
+const { syncableStore, getYjsDoc, transact } = SyncableStore
+...
 ```
 
 #### Import "syncableStore" into a Script of type "module" ####
@@ -103,7 +102,7 @@ If your code is within a normal script element, you will have to import the "syn
 The callback given as first argument of the `syncableStore` factory function has the signature
 
 ```
-  (ChangeReport:Map<any,string[]>):void
+(ChangeReport:Map<any,string[]>):void
 ```
 
 It will be invoked with a map whose keys are the changed objects and values are (sometimes empty) lists of property names.
@@ -115,11 +114,11 @@ Unfortunately, the indices of changed arrays cannot be determined - as a consequ
 A simple callback function could look as follows:
 
 ```
-  function ChangeCallback (ChangeReport) {
-    ChangeReport.forEach((PropertyList,StoreEntry) => {
-      console.log('changed store entry',StoreEntry, 'changed Properties',PropertyList)
-    })
-  }
+function ChangeCallback (ChangeReport) {
+  ChangeReport.forEach((PropertyList,StoreEntry) => {
+    console.log('changed store entry',StoreEntry, 'changed Properties',PropertyList)
+  })
+}
 ```
 
 Please keep in mind, that **store entries are usually "proxies"** for the actual values you originally entered into the store.
@@ -133,18 +132,39 @@ For nested arrays, the closest containing "map" and the property containing the 
 To give an example: let's say, you have a data model similar to
 
 ```
-  type Store = {
-    [Id:UUID]:{
-      EntryIdList:UUID[]
-    }
+type Store = {
+  [Id:UUID]:{
+    EntryIdList:UUID[]
   }
+}
 ```
 
 and you insert (the UUID of) a new entry into the `EntryIdList` of another one.
 
-Without `reportClosestArrayObject` (or if it was set to `false`), the change report will contain the `EntryIdList` and an empty property list. However, with `reportClosestArrayObject` set to `true`, the report will mention the entry containing the `EntryIdList` and `['EntryIdList']` as its list of changed proeprties.
+Without `reportClosestArrayObject` (or if it was set to `false`), the change report will contain the `EntryIdList` and an empty property list. However, with `reportClosestArrayObject` set to `true`, the report will mention the entry containing the `EntryIdList` and `['EntryIdList']` as its list of changed properties.
 
 ## Typical Use Case ##
+
+Quite often, data models from "trees" (i.e., directed acyclic graphs (DAGs) - often with additional references between nodes). If the leaves and branches of such a tree may be freely moved around, the following approach usually leads to an efficiently shareable data set:
+
+```
+type EntryPool = { [Id:UUID]:StoreEntry }
+type StoreEntry = {
+  Id:UUID, ContainerId:UUID|undefined, ContentIdList:UUID[],
+  ... // additional properties as needed
+}
+```
+
+Nota bene: the `StoreRoot` of your "syncableStore" will become the `EntryPool` of all your `StoreEntry` objects. The actual "root node" of the tree you are creating will then be an entry from that pool with a well-known (usually fixed) `UUID`.
+
+The basic operations on that store will then be reported as follows:
+
+* create root node<br>`Entry == StoreRoot, PropertyList == [<uuid>]`
+* create new inner node<br>
+* modify node<br>
+* move inner node within its container<br>
+* move inner node between containers<br>
+* destroy inner node<br>
 
 (t.b.w.)
 
