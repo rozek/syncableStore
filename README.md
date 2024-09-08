@@ -2,6 +2,8 @@
 
 small wrapper around [SyncedStore](https://github.com/YousefED/SyncedStore) which enhances change reporting
 
+> Just a small note: if you like this module and plan to use it, consider "starring" this repository (you will find the "Star" button on the top right of this page), so that I know which of my repositories to take most care of.
+
 ## Overview ##
 
 From their GitHub repo: "[SyncedStore CRDT](https://github.com/YousefED/SyncedStore) is an easy-to-use library for building live, collaborative applications that sync automatically".
