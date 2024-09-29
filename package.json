@@ -3,15 +3,18 @@
   "version": "0.1.0",
   "description": "small wrapper around SyncedStore which enhances change reporting",
   "type": "module",
-  "main": "./dist/syncableStore.js",
+  "main":   "./dist/syncableStore.umd.js",
+  "browser":"./dist/syncableStore.umd.js",
   "module": "./dist/syncableStore.esm.js",
   "svelte": "./dist/syncableStore.esm.js",
-  "types": "./dist/syncableStore.d.ts",
+  "types":  "./dist/syncableStore.d.ts",
   "exports": {
     ".": {
-      "require": "./dist/syncableStore.js",
+      "require":"./dist/syncableStore.umd.js",
+      "browser":"./dist/syncableStore.umd.js",
       "import": "./dist/syncableStore.esm.js",
-      "types": "./dist/syncableStore.d.ts"
+      "svelte": "./dist/syncableStore.esm.js",
+      "types":  "./dist/syncableStore.d.ts"
     },
     "./package.json": "./package.json"
   },
@@ -39,11 +42,11 @@
   },
   "homepage": "https://github.com/rozek/syncableStore#readme",
   "devDependencies": {
+    "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^8.2.1",
     "agadoo": "^2.0.0",
     "rimraf": "^3.0.2",
     "rollup": "^2.52.1",
-    "rollup-plugin-terser": "^7.0.2",
     "tslib": "^2.6.2",
     "typescript": "^4.3.3"
   },
