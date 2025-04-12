@@ -129,7 +129,7 @@ Please keep in mind, that **store entries are usually "proxies"** for the actual
 
 Since array change reports don't include the indices of changed elements and arrays may be difficult to find in a large data set anyway, there is an option to report their container object instead (together with the name of the property containing that array) - this leaves it up to the application to perform an array diff, if necessary.
 
-For nested arrays, the closest containing "map" and the property containing the outermost arrays will be reported.
+For nested arrays, the closest containing "map" and the property containing the outermost array will be reported.
 
 To give an example: let's say, you have a data model similar to
 
