@@ -30,7 +30,7 @@ and then (in your code)
 import { syncableStore, transact, getYjsDoc } from 'syncableStore'
 ```
 
-### With a Bundler ###
+### Without a Bundler ###
 
 If you want to go without a bundler and use "syncableStore" directly in your browser, you should include the [syncableStore-bundle](https://github.com/rozek/syncableStore-bundle) rather than the "syncableStore" itself.
 You may choose among three alternatives:
